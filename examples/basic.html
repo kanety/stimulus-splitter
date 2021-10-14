@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script type="importmap">
+    {
+      "imports": {
+        "@hotwired/stimulus": "/node_modules/@hotwired/stimulus/dist/stimulus.js",
+        "@kanety/stimulus-static-actions": "/node_modules/@kanety/stimulus-static-actions/dist/index.module.js",
+        "@kanety/stimulus-splitter": "/dist/index.module.js"
+      }
+    }
+  </script>
+  <script type="module">
+    import { Application, Controller } from '@hotwired/stimulus';
+    import SplitterController from '@kanety/stimulus-splitter';
+    const application = Application.start();
+    application.register('splitter', SplitterController);
+  </script>
+  <link rel="stylesheet" href="/dist/index.css"></link>
+</head>
+<body>
+  <h1>Vertical</h1>
+  <div class="st-splitter-vertical" data-controller="splitter">
+    <div>
+      <p>content 1</p>
+      <p>content 1</p>
+      <p>content 1</p>
+    </div>
+    <hr data-splitter-id="v1">
+    <div>
+      <p>content 2</p>
+      <p>content 2</p>
+      <p>content 2</p>
+    </div>
+    <hr data-splitter-id="v2">
+    <div>
+      <p>content 2</p>
+      <p>content 2</p>
+      <p>content 2</p>
+    </div>
+  </div>
+
+  <h1>Horizontal</h1>
+  <div class="st-splitter-horizontal" data-controller="splitter">
+    <div>
+      <p>content 1</p>
+      <p>content 1</p>
+      <p>content 1</p>
+    </div>
+    <hr data-splitter-id="h1">
+    <div>
+      <p>content 2</p>
+      <p>content 2</p>
+      <p>content 2</p>
+    </div>
+    <hr data-splitter-id="h2">
+    <div>
+      <p>content 2</p>
+      <p>content 2</p>
+      <p>content 2</p>
+    </div>
+  </div>
+</body>
+</html>
