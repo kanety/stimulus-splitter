@@ -18,13 +18,15 @@ export default class Store {
     if (!data) return;
 
     this.splitters.forEach(splitter => {
-      let size = data[this.controller.getID(splitter)];
-      let pane = splitter.previousElementSibling;
-      if (this.controller.isVertical(splitter)) {
-        pane.style.width = size[0] + 'px';
-      } else {
-        pane.style.height = size[1] + 'px';
-      }
+      let sizes = data[this.controller.getID(splitter)];
+      let panes = this.controller.panes(splitter);
+      panes.forEach((pane, i) => {
+        if (this.controller.isVertical(splitter)) {
+          pane.style.width = sizes[i][0] + 'px';
+        } else {
+          pane.style.height = sizes[i][1] + 'px';
+        }
+      });
     });
   }
 
@@ -33,8 +35,8 @@ export default class Store {
 
     let data = {};
     this.splitters.forEach(splitter => {
-      let pane = splitter.previousElementSibling;
-      data[this.controller.getID(splitter)] = [pane.offsetWidth, pane.offsetHeight];
+      let panes = this.controller.panes(splitter);
+      data[this.controller.getID(splitter)] = panes.map(pane => [pane.offsetWidth, pane.offsetHeight]);
     });
     this.constructor.save(this.key, data);
   }

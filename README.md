@@ -30,7 +30,7 @@ Import css:
 @import '@kanety/stimulus-splitter';
 ```
 
-Build html as follows for splitter with vertical bar:
+Build html as follows for vertical splitter:
 
 ```html
 <div class="st-splitter-vertical" data-controller="splitter">
@@ -43,12 +43,12 @@ Build html as follows for splitter with vertical bar:
   </div>
   <hr data-splitter-id="splitter2">
   <div>
-    <p>content 2</p>
+    <p>content 3</p>
   </div>
 </div>
 ```
 
-You can also specify horizontal bar as follows:
+You can also specify horizontal splitter:
 
 ```html
 <div class="st-splitter-horizontal" data-controller="splitter">
@@ -61,9 +61,28 @@ You can also specify horizontal bar as follows:
   </div>
   <hr data-splitter-id="splitter2">
   <div>
-    <p>content 2</p>
+    <p>content 3</p>
   </div>
 </div>
+```
+
+You can also use for resizable table headers as the following example:
+
+```html
+<table class="st-splitter-table" data-controller="splitter">
+  <tr>
+    <th>header 1</th>
+    <th><hr data-splitter-id="1">header 2</th>
+    <th><hr data-splitter-id="2">header 3</th>
+    <th><hr data-splitter-id="3">header 4</th>
+  </tr>
+  <tr>
+    <td>data 1</td>
+    <td>data 2</td>
+    <td>data 3</td>
+    <td>data 4</td>
+  </tr>
+</table>
 ```
 
 ### Options
@@ -71,8 +90,7 @@ You can also specify horizontal bar as follows:
 #### update-target
 
 By default the size of previous element adjacent with splitter is updated.
-If your container has fixed size,
-you can update both elements adjacent with the splitter using this option:
+If your container has fixed size, you can update both elements adjacent with the splitter:
 
 ```html
 <div data-controller="splitter" style="width: 100vw; height: 100vh;"
@@ -88,6 +106,17 @@ Save element size to `sessionStorage`:
 <div data-controller="splitter"
      data-splitter-store-key-value="YOUR_KEY">
 </div>
+```
+
+### Callbacks
+
+Run callbacks when elements are resized by splitter:
+
+```javascript
+let element = document.querySelector('[data-controller="splitter"]');
+element.addEventListener('splitter:resized', e => {
+  console.log("resized: " + e.detail.splitter);
+});
 ```
 
 ## License

@@ -2,25 +2,21 @@ describe('iframe', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div class="st-splitter-vertical" data-controller="splitter">
-        <div>
-          <p>content 1</p>
-        </div>
+        <div>content 1</div>
         <hr data-splitter-id="s1">
-        <div>
-          <p>content 2</p>
-        </div>
+        <div>content 2</div>
       </div>
       <iframe>
     `;
   });
 
   beforeEach(() => {
-    $('hr[data-splitter-id="s1"]').dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+    $('hr[data-splitter-id="s1"]').dispatchEvent(mockMouseEvent('mousedown', { bubbles: true }));
   });
 
   it('resizes', () => {
     expect($('iframe').style.pointerEvents).toEqual('none');
-    document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+    document.dispatchEvent(mockMouseEvent('mouseup', { bubbles: true }));
     expect($('iframe').style.pointerEvents).toEqual('');
   });
 });

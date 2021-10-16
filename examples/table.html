@@ -20,27 +20,22 @@
   <link rel="stylesheet" href="/dist/index.css"></link>
 </head>
 <body>
-  <h1>Store</h1>
-  <div class="st-splitter-vertical"
-       data-controller="splitter"
-       data-splitter-store-key-value="splitter">
-    <div>
-      <p>content 1</p>
-      <p>content 1</p>
-      <p>content 1</p>
-    </div>
-    <hr data-splitter-id="s1">
-    <div>
-      <p>content 2</p>
-      <p>content 2</p>
-      <p>content 2</p>
-    </div>
-    <hr data-splitter-id="s2">
-    <div>
-      <p>content 3</p>
-      <p>content 3</p>
-      <p>content 3</p>
-    </div>
-  </div>
+  <h1>Table</h1>
+  <table class="st-splitter-table" border="1" style="width: 100%;"
+         data-controller="splitter"
+         data-splitter-update-target-value="both">
+    <tr>
+      <th>header 1</th>
+      <th><hr data-splitter-id="1">header 2</th>
+      <th><hr data-splitter-id="2">header 3</th>
+      <th><hr data-splitter-id="3">header 4</th>
+    </tr>
+    <tr>
+      <td>data 1</td>
+      <td>data 2</td>
+      <td>data 3</td>
+      <td>data 4</td>
+    </tr>
+  </table>
 </body>
 </html>

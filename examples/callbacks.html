@@ -33,33 +33,12 @@
       <p>content 2</p>
       <p>content 2</p>
     </div>
-    <hr data-splitter-id="v2">
-    <div>
-      <p>content 3</p>
-      <p>content 3</p>
-      <p>content 3</p>
-    </div>
   </div>
-
-  <h1>Horizontal</h1>
-  <div class="st-splitter-horizontal" data-controller="splitter">
-    <div>
-      <p>content 1</p>
-      <p>content 1</p>
-      <p>content 1</p>
-    </div>
-    <hr data-splitter-id="h1">
-    <div>
-      <p>content 2</p>
-      <p>content 2</p>
-      <p>content 2</p>
-    </div>
-    <hr data-splitter-id="h2">
-    <div>
-      <p>content 3</p>
-      <p>content 3</p>
-      <p>content 3</p>
-    </div>
-  </div>
+  <script>
+    let element = document.querySelector('[data-controller="splitter"]');
+    element.addEventListener('splitter:resized', e => {
+      alert('resized: ' + e.detail.splitter.getAttribute('data-splitter-id'));
+    });
+  </script>
 </body>
 </html>
