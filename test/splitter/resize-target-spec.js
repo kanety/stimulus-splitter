@@ -1,9 +1,9 @@
-describe('update-target', () => {
+describe('resize-target', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div class="st-splitter-vertical"
            data-controller="splitter"
-           data-splitter-update-target-value="both">
+           data-splitter-resize-target-value="both">
         <div>content 1</div>
         <hr data-splitter-id="s1">
         <div>

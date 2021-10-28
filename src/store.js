@@ -20,13 +20,11 @@ export default class Store {
     this.splitters.forEach(splitter => {
       let sizes = data[this.controller.getID(splitter)];
       let panes = this.controller.panes(splitter);
-      panes.forEach((pane, i) => {
-        if (this.controller.isVertical(splitter)) {
-          pane.style.width = sizes[i][0] + 'px';
-        } else {
-          pane.style.height = sizes[i][1] + 'px';
-        }
-      });
+      if (this.controller.isVertical(splitter)) {
+        this.controller.setWidth(panes, sizes[0][0], sizes[1][0]);
+      } else {
+        this.controller.setHeight(panes, sizes[0][1], sizes[1][1]);
+      }
     });
   }
 
@@ -51,6 +49,10 @@ export default class Store {
   }
 
   static save(key, value) {
-    sessionStorage.setItem(key, JSON.stringify(value));
+    try {
+      sessionStorage.setItem(key, JSON.stringify(value));
+    } catch(error) {
+      console.error(error);
+    }
   }
 }

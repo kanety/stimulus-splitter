@@ -87,14 +87,14 @@ You can also use for resizable table headers as the following example:
 
 ### Options
 
-#### update-target
+#### resize-target
 
-By default the size of previous element adjacent with splitter is updated.
-If your container has fixed size, you can update both elements adjacent with the splitter:
+By default the previous element adjacent with splitter is resized.
+If your container has fixed size, you can resize both elements adjacent with the splitter:
 
 ```html
 <div data-controller="splitter" style="width: 100vw; height: 100vh;"
-     data-splitter-update-target-value="both">
+     data-splitter-resize-target-value="both">
 </div>
 ```
 

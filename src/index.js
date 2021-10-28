@@ -5,7 +5,7 @@ import './index.scss';
 
 export default class extends Controller {
   static values = {
-    updateTarget: String,
+    resizeTarget: String,
     storeKey: String
   };
   static actions = [
@@ -49,9 +49,9 @@ export default class extends Controller {
     let panes = this.panes(this.splitter);
 
     if (this.isVertical(this.splitter)) {
-      this.updateWidth(panes, pos);
+      this.resizeWidth(panes, pos);
     } else {
-      this.updateHeight(panes, pos);
+      this.resizeHeight(panes, pos);
     }
   }
 
@@ -93,10 +93,20 @@ export default class extends Controller {
     return this.element.matches('table') || splitter.parentNode.matches('.st-splitter-vertical');
   }
 
-  updateWidth(panes, pos) {
+  resizeWidth(panes, pos) {
     let width1 = this.startSizes[0].width + (pos.x - this.startPos.x);
     let width2 = this.startSizes[1].width - (pos.x - this.startPos.x);
-    if (this.updateTargetValue == 'both') {
+    this.setWidth(panes, width1, width2);
+  }
+
+  resizeHeight(panes, pos) {
+    let height1 = this.startSizes[0].height + (pos.y - this.startPos.y);
+    let height2 = this.startSizes[1].height - (pos.y - this.startPos.y);
+    this.setHeight(panes, height1, height2);
+  }
+
+  setWidth(panes, width1, width2) {
+    if (this.resizeTargetValue == 'both') {
       if (width1 > 0 && width2 > 0) {
         panes[0].style.width = width1 + 'px';
         panes[1].style.width = width2 + 'px';
@@ -108,10 +118,8 @@ export default class extends Controller {
     }
   }
 
-  updateHeight(panes, pos) {
-    let height1 = this.startSizes[0].height + (pos.y - this.startPos.y);
-    let height2 = this.startSizes[1].height - (pos.y - this.startPos.y);
-    if (this.updateTargetValue == 'both') {
+  setHeight(panes, height1, height2) {
+    if (this.resizeTargetValue == 'both') {
       if (height1 > 0 && height2 > 0) {
         panes[0].style.height = height1 + 'px';
         panes[1].style.height = height2 + 'px';
